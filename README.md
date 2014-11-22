@@ -89,6 +89,23 @@ Plugins usually have an `options` section and then any number of `targets`.
     // plugin configuration
     grunt.initConfig({
 
+      uglify: {                   // plugin short name, should be specified in the plugin documentation
+        options: {
+          mangle: true,           // shorten variable names
+          compress: true,         // remove whitepsace
+          sourceMap: 'dist/application.map',
+          banner: '/* Your Name 2014 */\n'
+        },
+        app: {               // could be any label like dist, prod, etc.
+          src: 'src/application.js',
+          dest: 'dist/application.min.js'
+        },
+        util: {
+          src: 'src/application.js',
+          dest: 'dist/application.min.js'
+        }
+      }
+
     });
 
 
@@ -97,6 +114,16 @@ Plugins usually have an `options` section and then any number of `targets`.
   };
   ```
 
-Most plugins are multi-target, which means if you run for example, `grunt uglify`, it will run ALL targets.
+Most plugins are multi-target, which means if you don't specify a target, it runs them all.
 
-You can also specify just a single target, for example, `grunt uglify:prod`
+For example, to run both `app` and `util` targets in above example
+
+  ```bash
+  grunt uglify
+  ```
+
+To run just the `util` target
+
+  ```bash
+  grunt uglify:util
+  ```
