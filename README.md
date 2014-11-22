@@ -7,6 +7,7 @@
     - [From template](#from-template)
     - [From scratch](#from-scratch)
   - [grunt-contrib-uglify](#grunt-contrib-uglify)
+  - [grunt-contrib-jshint](#grunt-contrib-jshint)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -127,3 +128,34 @@ To run just the `util` target
   ```bash
   grunt uglify:util
   ```
+
+## grunt-contrib-jshint
+
+  ```bash
+  npm install grunt-contrib-jshint --save-dev
+  ```
+
+[Options](http://jshint.com/docs/options/) can be specified in the options object of `Gruntfile.js` or in `.jshintrc` file.
+
+Sample configuration
+
+  ```javascript
+  jshint: {
+    options: {
+      eqeqeq: true,   // disallow double equals, must use triple equals
+      curly: true,    // always use curly braces even for one liners
+      undef: true,    // must use var keyward
+      unused: true    // alert for created but unused variables
+    },
+    target: {
+      src: 'src/*.js' // jshint doesn't modify files, so only need src, no dest
+    }
+  }
+  ```
+
+Run it
+
+  ```bash
+  grunt jshint
+  ```
+

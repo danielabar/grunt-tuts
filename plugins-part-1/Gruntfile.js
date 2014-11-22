@@ -17,6 +17,22 @@ module.exports = function(grunt) {
         src: 'src/util.js',
         dest: 'dist/util.min.js'
       }
+    },
+
+    jshint: {
+      // Specify options inline
+      // options: {
+      //   eqeqeq: true,   // disallow double equals, must use triple equals
+      //   curly: true,    // always use curly braces even for one liners
+      //   undef: true     // must use var keyward
+      // },
+      // Point to .jshintrc file
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      dev: {
+        src: 'src/*.js' // jshint doesn't modify files, so only need src, no dest
+      }
     }
 
   });
