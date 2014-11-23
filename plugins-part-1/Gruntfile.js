@@ -68,6 +68,10 @@ module.exports = function(grunt) {
 
     nodeunit: {
       target: 'test/*_test.js'    // given that all test files are located in test folder and suffixed with _test
+    },
+
+    clean: {
+      target: ['dist', 'lib']
     }
 
   });
@@ -78,8 +82,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('test', ['nodeunit']);
-  grunt.registerTask('default', ['jshint', 'nodeunit', 'coffee', 'concat', 'uglify'])
+  grunt.registerTask('default', ['jshint', 'nodeunit', 'clean', 'coffee', 'concat', 'uglify'])
 
 };

@@ -6,12 +6,14 @@
   - [Getting Started](#getting-started)
     - [From template](#from-template)
     - [From scratch](#from-scratch)
-  - [grunt-contrib-uglify](#grunt-contrib-uglify)
-  - [grunt-contrib-jshint](#grunt-contrib-jshint)
-  - [grunt-contrib-concat](#grunt-contrib-concat)
-  - [grunt-contrib-watch](#grunt-contrib-watch)
-  - [grunt-contrib-coffee](#grunt-contrib-coffee)
-  - [grunt-contrib-nodeunit](#grunt-contrib-nodeunit)
+  - [Commonly Used Plugins](#commonly-used-plugins)
+    - [grunt-contrib-uglify](#grunt-contrib-uglify)
+    - [grunt-contrib-jshint](#grunt-contrib-jshint)
+    - [grunt-contrib-concat](#grunt-contrib-concat)
+    - [grunt-contrib-watch](#grunt-contrib-watch)
+    - [grunt-contrib-coffee](#grunt-contrib-coffee)
+    - [grunt-contrib-nodeunit](#grunt-contrib-nodeunit)
+    - [grunt-contrib-clean](#grunt-contrib-clean)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -79,8 +81,12 @@ Official Grunt plugins are maintained by the core Grunt team and start with `gru
 
 Next section will explain how to configure the plugin and run grunt tasks.
 
+## Commonly Used Plugins
 
-## grunt-contrib-uglify
+To automate many common tasks.
+
+
+### grunt-contrib-uglify
 
 Create `gruntfile.js` in the root of your project. It's written as a node module.
 
@@ -133,7 +139,7 @@ To run just the `util` target
   grunt uglify:util
   ```
 
-## grunt-contrib-jshint
+### grunt-contrib-jshint
 
   ```bash
   npm install grunt-contrib-jshint --save-dev
@@ -163,7 +169,7 @@ Run it
   grunt jshint
   ```
 
-## grunt-contrib-concat
+### grunt-contrib-concat
 
   ```bash
   npm install grunt-contrib-concat --save-dev
@@ -204,7 +210,7 @@ If anything in the chain fails, the process will halt and the other tasks will n
 Task named `default` has special meaning to grunt. When `grunt` is run on the command line with no task name,
 the `default` task will be run.
 
-## grunt-contrib-watch
+### grunt-contrib-watch
 
   ```bash
   npm install grunt-contrib-watch --save-dev
@@ -230,7 +236,7 @@ Sample configuration - run jshint whenever any js file changes
   grunt watch:scripts
   ```
 
-## grunt-contrib-coffee
+### grunt-contrib-coffee
 
   ```bash
   npm install grunt-contrib-coffee --save-dev
@@ -261,7 +267,7 @@ Run it
   grunt coffee
   ```
 
-## grunt-contrib-nodeunit
+### grunt-contrib-nodeunit
 
 [Nodeunit](https://github.com/caolan/nodeunit) is a unit testing framework for [Node.js](http://nodejs.org/).
 
@@ -276,3 +282,45 @@ Sample configuration, note no options are needed. And target can simply be speci
     target: 'test/*_test.js'    // given that all test files are located in test folder and suffixed with _test
   }
   ```
+
+Run it
+
+  ```bash
+  grunt nodeunit
+  ```
+
+Or register a `test` task
+
+  ```javascript
+  grunt.registerTask('test', ['nodeunit']);
+  ```
+
+Then run
+
+  ```bash
+  grunt test
+  ```
+
+### grunt-contrib-clean
+
+  ```bash
+  npm install grunt-contrib-nodeunit --save-dev
+  ```
+
+Simple task to remove files or folders from project. For example, to wipe out the `dist` dir before running a build.
+
+Sample configuration, `target` is array of folders to delete.
+
+  ```javascript
+  clean: {
+    target: ['dist', 'lib']
+  }
+  ```
+
+Run it
+
+  ```bash
+  grunt clean
+  ```
+
+Or more commonly, would add the `clean` task as part of a bigger build process.
