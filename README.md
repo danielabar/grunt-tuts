@@ -153,9 +153,53 @@ Sample configuration
   }
   ```
 
-Run it
-
   ```bash
   grunt jshint
   ```
 
+## grunt-contrib-concat
+
+  ```bash
+  npm install grunt-contrib-concat --save-dev
+  ```
+
+Sample configuration
+
+  ```javascript
+  concat: {
+    options: {
+      separator: ';',     // char to use between files that are being put together
+      banner: '/* danib 2014 */\n'
+    },
+    target: {
+      // example of array config rather than wildcarding
+      src: ['src/application.js', 'src/util.js'],
+      dest: 'dist/application.js'
+    }
+  }
+  ```
+
+  ```bash
+  grunt concat
+  ```
+
+To use concat and uglify together, can specify the `dest` of concat as the `src` of uglify.
+
+Then create a task that combines both of these
+
+  ```javascript
+  grunt.registerTask('default', ['concat', 'uglify'])
+  ```
+
+If anything in the chain fails, the process will halt and the other tasks will not run.
+
+Task named `default` has special meaning to grunt. When `grunt` is run on the command line with no task name,
+the `default` task will be run.
+
+## grunt-contrib-watch
+
+  ```bash
+  npm install grunt-contrib-watch --save-dev
+  ```
+
+Watch for changes in specified files, and run tasks whenever those files are changed.

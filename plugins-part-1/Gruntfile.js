@@ -2,6 +2,18 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    concat: {
+      options: {
+        separator: ';',     // char to use between files that are being put together
+        banner: '/* danib 2014 */\n'
+      },
+      target: {
+        // example of array config rather than wildcarding
+        src: ['src/application.js', 'src/util.js'],
+        dest: 'dist/application.js'
+      }
+    },
+
     uglify: {
       options: {
         mangle: true,
@@ -9,13 +21,9 @@ module.exports = function(grunt) {
         sourceMap: 'dist/application.map',
         banner: '/* danib 2014 */\n'
       },
-      app: {
-        src: 'src/application.js',
+      target: {
+        src: 'dist/application.js',
         dest: 'dist/application.min.js'
-      },
-      util: {
-        src: 'src/util.js',
-        dest: 'dist/util.min.js'
       }
     },
 
@@ -30,7 +38,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      dev: {
+      target: {
         src: 'src/*.js' // jshint doesn't modify files, so only need src, no dest
       }
     }
@@ -39,5 +47,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify'])
 
 };
