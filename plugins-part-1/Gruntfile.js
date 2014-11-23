@@ -64,6 +64,10 @@ module.exports = function(grunt) {
         dest: 'lib',      // where to put compiled files
         ext: '.js'        // extension to put on compiled files
       }
+    },
+
+    nodeunit: {
+      target: 'test/*_test.js'    // given that all test files are located in test folder and suffixed with _test
     }
 
   });
@@ -73,7 +77,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify'])
+  grunt.registerTask('test', ['nodeunit']);
+  grunt.registerTask('default', ['jshint', 'nodeunit', 'coffee', 'concat', 'uglify'])
 
 };

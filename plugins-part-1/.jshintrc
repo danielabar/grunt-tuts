@@ -1,5 +1,8 @@
 {
   "eqeqeq": true,
   "curly": true,
-  "undef": true
+  "undef": true,
+  "predef": [
+    "exports"
+  ]
 }

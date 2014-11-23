@@ -11,6 +11,7 @@
   - [grunt-contrib-concat](#grunt-contrib-concat)
   - [grunt-contrib-watch](#grunt-contrib-watch)
   - [grunt-contrib-coffee](#grunt-contrib-coffee)
+  - [grunt-contrib-nodeunit](#grunt-contrib-nodeunit)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -21,7 +22,7 @@ grunt-tuts
 
 ## Getting Started
 
-Install [Node](http://nodejs.org/)
+Install [Node.js](http://nodejs.org/)
 
 Install the Grunt cli globally
 
@@ -231,7 +232,7 @@ Sample configuration - run jshint whenever any js file changes
 
 ## grunt-contrib-coffee
 
-```bash
+  ```bash
   npm install grunt-contrib-coffee --save-dev
   ```
 
@@ -260,3 +261,18 @@ Run it
   grunt coffee
   ```
 
+## grunt-contrib-nodeunit
+
+[Nodeunit](https://github.com/caolan/nodeunit) is a unit testing framework for [Node.js](http://nodejs.org/).
+
+  ```bash
+  npm install grunt-contrib-nodeunit --save-dev
+  ```
+
+Sample configuration, note no options are needed. And target can simply be specified inline, no object needed
+
+  ```javascript
+  nodeunit: {
+    target: 'test/*_test.js'    // given that all test files are located in test folder and suffixed with _test
+  }
+  ```

@@ -1,11 +1,9 @@
-var MyUtils = (function() {
+function h1(text) {
+  return '<h1>' + text + '</h1>';
+}
 
-  var foo = function(bar) {
-    return "FOO " + bar + "!";
-  };
+function a() {
+  return 1 === 1;
+}
 
-  return {
-    foo: foo
-  };
-
-})();
+exports.h1 = h1;
