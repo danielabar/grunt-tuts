@@ -10,6 +10,7 @@
   - [grunt-contrib-jshint](#grunt-contrib-jshint)
   - [grunt-contrib-concat](#grunt-contrib-concat)
   - [grunt-contrib-watch](#grunt-contrib-watch)
+  - [grunt-contrib-coffee](#grunt-contrib-coffee)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -155,6 +156,8 @@ Sample configuration
   }
   ```
 
+Run it
+
   ```bash
   grunt jshint
   ```
@@ -180,6 +183,8 @@ Sample configuration
     }
   }
   ```
+
+Run it
 
   ```bash
   grunt concat
@@ -223,3 +228,35 @@ Sample configuration - run jshint whenever any js file changes
   ```bash
   grunt watch:scripts
   ```
+
+## grunt-contrib-coffee
+
+```bash
+  npm install grunt-contrib-coffee --save-dev
+  ```
+
+Sample configuration using [dynamic file objects](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically) in target
+
+  ```javascript
+  coffee: {
+    options: {
+      bare: true,       // do not wrap in immediately invoked function expression (iife)
+      join: false,      // do not join all the coffee files together before converting to javascript
+      separator: ';'    // char to use between files that are being put together
+    },
+    target: {
+      expand: true,     // expand file paths
+      cwd: 'src',       // current working directory that dynamic file object will be working inside of
+      src: '*.coffee',  // which files to compile, no need to specify dir because of cwd specified above
+      dest: 'lib',      // where to put compiled files
+      ext: '.js'        // extension to put on compiled files
+    }
+  }
+  ```
+
+Run it
+
+  ```bash
+  grunt coffee
+  ```
+

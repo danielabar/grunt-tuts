@@ -1,0 +1,1 @@
+sayGoodbye (name) -> "Goodbye #{name}, it was nice meeting you."

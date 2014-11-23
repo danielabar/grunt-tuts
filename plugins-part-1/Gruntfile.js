@@ -48,6 +48,22 @@ module.exports = function(grunt) {
         files: ['src/*.js'],
         tasks: ['jshint']
       }
+    },
+
+    coffee: {
+      options: {
+        // bare: true,    // true: do not wrap in immediately invoked function expression (iife)
+        bare: false,      // false: wrap in immediately invoked function expression (iife)
+        join: false,      // do not join all the coffee files together before converting to javascript
+        separator: ';'    // char to use between files that are being put together
+      },
+      target: {
+        expand: true,     // expand file paths
+        cwd: 'src',       // current working directory that dynamic file object will be working inside of
+        src: '*.coffee',  // which files to compile, no need to specify dir because of cwd specified above
+        dest: 'lib',      // where to put compiled files
+        ext: '.js'        // extension to put on compiled files
+      }
     }
 
   });
@@ -56,6 +72,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   grunt.registerTask('default', ['jshint', 'concat', 'uglify'])
 
