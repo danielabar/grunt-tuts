@@ -8,6 +8,8 @@
     - [From scratch](#from-scratch)
   - [grunt-contrib-uglify](#grunt-contrib-uglify)
   - [grunt-contrib-jshint](#grunt-contrib-jshint)
+  - [grunt-contrib-concat](#grunt-contrib-concat)
+  - [grunt-contrib-watch](#grunt-contrib-watch)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -203,3 +205,21 @@ the `default` task will be run.
   ```
 
 Watch for changes in specified files, and run tasks whenever those files are changed.
+
+Watch is a little different from other plugins. Rather than having options and targets,
+it's targets are on the outside.
+
+Sample configuration - run jshint whenever any js file changes
+
+  ```javascript
+  watch: {
+    scripts: {
+      files: ['src/*.js'],
+      tasks: ['jshint']
+    }
+  }
+  ```
+
+  ```bash
+  grunt watch:scripts
+  ```

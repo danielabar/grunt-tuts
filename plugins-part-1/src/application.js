@@ -4,8 +4,13 @@ var MyModule = (function() {
     return "Hi, " + name + "!";
   };
 
+  var sayBye = function(name) {
+    return "Bye, " + name + "!";
+  };
+
   return {
-    sayHi: sayHi
+    sayHi: sayHi,
+    sayBye: sayBye
   };
 
 })();
