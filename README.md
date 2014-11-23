@@ -14,6 +14,7 @@
     - [grunt-contrib-coffee](#grunt-contrib-coffee)
     - [grunt-contrib-nodeunit](#grunt-contrib-nodeunit)
     - [grunt-contrib-clean](#grunt-contrib-clean)
+  - [Creating Tasks](#creating-tasks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -324,3 +325,120 @@ Run it
   ```
 
 Or more commonly, would add the `clean` task as part of a bigger build process.
+
+## Creating Tasks
+
+Use `grunt.registerTask` to create completely new tasks. First arg is name, optional second arg is description, third is function to execute.
+For example
+
+  ```javascript
+  grunt.registerTask(
+    'tutorial',                   // name
+    'this is an example task',    // description
+    function() {                  // function to run when task is invoked
+      if (+new Date() % 2 === 0) {
+        console.log('the time is even');
+      } else {
+        console.log('the time is odd');
+      }
+    }
+  );
+  ```
+
+Can also create a task that takes parameters. For example
+
+  ```javascript
+  grunt.registerTask('withArgs', function(one, two) {
+    var str = this.name + ": ";    // refers to name of task
+    str += one || 'one';
+    str += two ? ', ' + two : ', two';
+    console.log(str);
+  });
+  ```
+
+To run it without specifying any args
+
+  ```bash
+  grunt withArgs     // one, two
+  ```
+
+To run it specifying only first arg, note use of `:` rather than space!
+
+  ```bash
+  grunt:joe         // joe, two
+  ```
+
+To run it specifying both args
+
+  ```bash
+  grunt:joe:smith   // joe, smith
+  ```
+
+Can also create a custom multi task. First register it
+
+  ```javascript
+  grunt.registerMultiTask('multi', function() {
+    console.log(this.target);
+    console.log(this.data);
+  });
+  ```
+
+Then provide the targets in `initConfig` section, for example
+
+  ```javascript
+  multi: {
+    target: {
+      name: 'Daniela',
+      age: 23
+    },
+    other: {
+      arr: [1, 2, 3],
+      bool: false
+    },
+    last: {
+      obj: {
+        one: 1,
+        two: 2
+      }
+    }
+  }
+  ```
+
+Run it
+
+  ```bash
+  grunt multi
+  ```
+
+Outputs
+
+  ```
+  Running "multi:target" (multi) task
+  target
+  { name: 'Daniela', age: 23 }
+
+  Running "multi:other" (multi) task
+  other
+  { arr: [ 1, 2, 3 ], bool: false }
+
+  Running "multi:last" (multi) task
+  last
+  { obj: { one: 1, two: 2 } }
+  ```
+
+Can also just run one of the custom targets, for example
+
+  ```bash
+  grunt multi:other
+  ```
+
+Outputs
+
+  ```
+  Running "multi:other" (multi) task
+  other
+  { arr: [ 1, 2, 3 ], bool: false }
+  ```
+
+To create a useful task, for example that manipulates files, need to be familiar with the [Grunt API](http://gruntjs.com/api/inside-tasks).
+Next sections will cover this.

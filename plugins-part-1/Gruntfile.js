@@ -72,6 +72,23 @@ module.exports = function(grunt) {
 
     clean: {
       target: ['dist', 'lib']
+    },
+
+    multi: {
+      target: {
+        name: 'Daniela',
+        age: 23
+      },
+      other: {
+        arr: [1, 2, 3],
+        bool: false
+      },
+      last: {
+        obj: {
+          one: 1,
+          two: 2
+        }
+      }
     }
 
   });
@@ -85,6 +102,33 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('test', ['nodeunit']);
-  grunt.registerTask('default', ['jshint', 'nodeunit', 'clean', 'coffee', 'concat', 'uglify'])
+  grunt.registerTask('default', ['jshint', 'nodeunit', 'clean', 'coffee', 'concat', 'uglify']);
+
+  // Example of custom task
+  grunt.registerTask(
+    'tutorial',                   // name
+    'this is an example task',    // description
+    function() {                  // function to run when task is invoked
+      if (+new Date() % 2 === 0) {
+        console.log('the time is even');
+      } else {
+        console.log('the time is odd');
+      }
+    }
+  );
+
+  // Example of custom task that accepts parameters
+  grunt.registerTask('withArgs', function(one, two) {
+    var str = this.name + ": ";    // refers to name of task
+    str += one || 'one';
+    str += two ? ', ' + two : ', two';
+    console.log(str);
+  });
+
+  // Example of custom multi task (see configuration in initConfig section)
+  grunt.registerMultiTask('multi', function() {
+    console.log(this.target);
+    console.log(this.data);
+  });
 
 };
