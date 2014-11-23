@@ -15,6 +15,10 @@
     - [grunt-contrib-nodeunit](#grunt-contrib-nodeunit)
     - [grunt-contrib-clean](#grunt-contrib-clean)
   - [Creating Tasks](#creating-tasks)
+  - [Grunt API Part 1](#grunt-api-part-1)
+    - [Logging](#logging)
+    - [Config](#config)
+    - [Errors](#errors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -142,6 +146,8 @@ To run just the `util` target
 
 ### grunt-contrib-jshint
 
+[Example](plugins-part-1/Gruntfile.js)
+
   ```bash
   npm install grunt-contrib-jshint --save-dev
   ```
@@ -171,6 +177,8 @@ Run it
   ```
 
 ### grunt-contrib-concat
+
+[Example](plugins-part-1/Gruntfile.js)
 
   ```bash
   npm install grunt-contrib-concat --save-dev
@@ -213,6 +221,8 @@ the `default` task will be run.
 
 ### grunt-contrib-watch
 
+[Example](plugins-part-1/Gruntfile.js)
+
   ```bash
   npm install grunt-contrib-watch --save-dev
   ```
@@ -238,6 +248,8 @@ Sample configuration - run jshint whenever any js file changes
   ```
 
 ### grunt-contrib-coffee
+
+[Example](plugins-part-1/Gruntfile.js)
 
   ```bash
   npm install grunt-contrib-coffee --save-dev
@@ -269,6 +281,8 @@ Run it
   ```
 
 ### grunt-contrib-nodeunit
+
+[Example](plugins-part-1/Gruntfile.js)
 
 [Nodeunit](https://github.com/caolan/nodeunit) is a unit testing framework for [Node.js](http://nodejs.org/).
 
@@ -304,6 +318,8 @@ Then run
 
 ### grunt-contrib-clean
 
+[Example](plugins-part-1/Gruntfile.js)
+
   ```bash
   npm install grunt-contrib-nodeunit --save-dev
   ```
@@ -327,6 +343,8 @@ Run it
 Or more commonly, would add the `clean` task as part of a bigger build process.
 
 ## Creating Tasks
+
+[Example](plugins-part-1/Gruntfile.js)
 
 Use `grunt.registerTask` to create completely new tasks. First arg is name, optional second arg is description, third is function to execute.
 For example
@@ -442,3 +460,28 @@ Outputs
 
 To create a useful task, for example that manipulates files, need to be familiar with the [Grunt API](http://gruntjs.com/api/inside-tasks).
 Next sections will cover this.
+
+## Grunt API Part 1
+
+[Example](api-project/Gruntfile.js)
+
+All API functions are accessed via `grunt` object that is passed in to module.exports in Gruntfile.js.
+
+### Logging
+
+Grunt API exposes several methods for logging, that are better than the vanilla `console.log`.
+
+Logging methods available via `grunt.log...`
+
+### Config
+
+Can get and set data from initConfig via `grunt.config...`
+
+### Errors
+
+Can throw errors from a task. Two different types of errors.
+
+*Warning* error will stop proceeding of task, but can be overridden using `-- force` flag.
+
+*Fatal* errors cannot be overridden.
+
