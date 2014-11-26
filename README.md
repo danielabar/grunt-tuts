@@ -20,6 +20,8 @@
     - [Config](#config)
     - [Errors](#errors)
     - [File](#file)
+    - [Options](#options)
+    - [Utility](#utility)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -514,4 +516,32 @@ Recurse through a directory, getting access to each file name/path
   grunt.file.recurse('src', function(file) {
     grunt.log.ok(file);
   });
+  ```
+
+### Options
+
+Can use flags to alter the way a task works.
+
+  ```javascript
+  grunt.registerTask('options', function() {
+    var target = grunt.option('target');
+    grunt.log.writeln(target);
+  });
+  ```
+
+Run it
+
+  ```bash
+  grunt options               // undefined
+  grunt options --target      // true
+  grunt options --no-target   // false
+  grunt options --target=dev  // dev
+  ```
+
+### Utility
+
+`kindOf` works similar to `typeof` in JavaScript, but aware of more types.
+
+  ```javascript
+  grunt.log.writeln(grunt.util.kindOf([1, 2, 3]));      // array
   ```

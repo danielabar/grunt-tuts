@@ -64,22 +64,27 @@ module.exports = function(grunt) {
     var yaml = grunt.file.readYAML('data.yaml');
     console.log(yaml);
 
-    // Write to a file
-    grunt.file.write('somefile.txt', 'this is a message');
-
-    // Copy a file
-    grunt.file.copy('somefile.txt', 'other.txt');
-
-    // Delete a file
-    grunt.file.delete('other.txt');
-
-    // Make a directory
-    grunt.file.mkdir('newdir');
+    grunt.file.write('somefile.txt', 'this is a message');    // Write to a file
+    grunt.file.copy('somefile.txt', 'other.txt');             // Copy a file
+    grunt.file.delete('other.txt');                           // Delete a file
+    grunt.file.mkdir('newdir');                               // Make a directory
 
     // Recurse through a directory
     grunt.file.recurse('src', function(file) {
       grunt.log.ok(file);
     });
+  });
+
+  // A custom task demonstrating working with options
+  grunt.registerTask('options', function() {
+    var target = grunt.option('target');
+    grunt.log.writeln(target);
+  });
+
+  // A custom task demonstrating various utilities
+  grunt.registerTask('util', function() {
+    // similar to JavaScript typeOf, but understands more types
+    grunt.log.writeln(grunt.util.kindOf([1, 2, 3]));
   });
 
 
