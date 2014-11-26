@@ -50,4 +50,37 @@ module.exports = function(grunt) {
     grant.log.writeln('fifth line');    // will never get here
   });
 
+  // A custom task demonstrating file apis
+  grunt.registerTask('files', function() {
+    // Read any file into a string
+    var str = grunt.file.read('.gitignore');
+    grunt.log.writeln(str);
+
+    // Read json file into an object
+    var json = grunt.file.readJSON('package.json');   // json is an object
+    console.log(json.devDependencies);
+
+    // Read yaml file
+    var yaml = grunt.file.readYAML('data.yaml');
+    console.log(yaml);
+
+    // Write to a file
+    grunt.file.write('somefile.txt', 'this is a message');
+
+    // Copy a file
+    grunt.file.copy('somefile.txt', 'other.txt');
+
+    // Delete a file
+    grunt.file.delete('other.txt');
+
+    // Make a directory
+    grunt.file.mkdir('newdir');
+
+    // Recurse through a directory
+    grunt.file.recurse('src', function(file) {
+      grunt.log.ok(file);
+    });
+  });
+
+
 }

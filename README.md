@@ -15,10 +15,11 @@
     - [grunt-contrib-nodeunit](#grunt-contrib-nodeunit)
     - [grunt-contrib-clean](#grunt-contrib-clean)
   - [Creating Tasks](#creating-tasks)
-  - [Grunt API Part 1](#grunt-api-part-1)
+  - [Grunt API's](#grunt-apis)
     - [Logging](#logging)
     - [Config](#config)
     - [Errors](#errors)
+    - [File](#file)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -461,7 +462,7 @@ Outputs
 To create a useful task, for example that manipulates files, need to be familiar with the [Grunt API](http://gruntjs.com/api/inside-tasks).
 Next sections will cover this.
 
-## Grunt API Part 1
+## Grunt API's
 
 [Example](api-project/Gruntfile.js)
 
@@ -485,3 +486,32 @@ Can throw errors from a task. Two different types of errors.
 
 *Fatal* errors cannot be overridden.
 
+  ```javascript
+  grunt.registerTask('errors', function() {
+    grunt.log.writeln('first line');    // this will always show
+    grunt.fail.warn('second line');     // will see this line as warning
+    grunt.log.writeln('third line');    // this will not be displayed unless --force is used
+    grunt.fail.fatal('fourth line');    // this will show as fatal error
+    grant.log.writeln('fifth line');    // will never get here
+  });
+  ```
+
+### File
+
+`grunt.file.read` to read a file into a string.
+
+`grunt.file.readJSON` will read a JSON file into an object.
+
+`grunt.file.write(fileName, text)` will write text to fileName.
+
+`grunt.file.copy(src, target)` copy file src to target.
+
+`grunt.file.mkdir(newdir)` make a new directory named newdir.
+
+Recurse through a directory, getting access to each file name/path
+
+  ```javascript
+  grunt.file.recurse('src', function(file) {
+    grunt.log.ok(file);
+  });
+  ```
