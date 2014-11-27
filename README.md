@@ -544,4 +544,62 @@ Run it
 
   ```javascript
   grunt.log.writeln(grunt.util.kindOf([1, 2, 3]));      // array
+  grunt.util.normalizelf(string);   // prints out string with whatever line feed is required by OS (Mac newline, Windows newline & carriage return)
   ```
+
+Recurse over object properties
+
+  ```javascript
+  // recurse over object properties
+  var o = {
+    name: 'Andrew',
+    obj: {
+      one: 1,
+      two: 2
+    },
+    arr: ['a', 'b', 'c']
+  };
+  grunt.util.recurse(o, function(value) {
+    grunt.log.ok(value);
+  });
+  ```
+
+Outputs
+
+  ```
+  Andrew
+  1
+  2
+  a
+  b
+  c
+  ```
+
+Repeat a string x number of times
+
+  ```javascript
+  grunt.log.writeln(grunt.util.repeat(16, 'Na') + ' Batman!');    // NaNaNaNaNaNaNaNaNaNaNaNaNaNaNaNa Batman!
+  ```
+
+Pluralization to output the singular or plural form of a word depending on if the input numerb is 1 or greater
+
+  ```javascript
+  var numErrors = 4;
+  grunt.log.writeln(grunt.util.pluralize(numErrors, 'function/functions'));   // functions
+  numErrors = 1;
+  grunt.log.writeln(grunt.util.pluralize(numErrors, 'function/functions'));   // function
+  ```
+
+Create an error from a message and throw it to force a failure
+
+  ```javascript
+  throw grunt.util.error('something bad happened!');
+  ```
+
+Output
+
+  ```
+  Warning: something bad happened! Use --force to continue.
+  Aborted due to warnings.
+  ```
+

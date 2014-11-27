@@ -83,8 +83,32 @@ module.exports = function(grunt) {
 
   // A custom task demonstrating various utilities
   grunt.registerTask('util', function() {
-    // similar to JavaScript typeOf, but understands more types
-    grunt.log.writeln(grunt.util.kindOf([1, 2, 3]));
+    grunt.log.writeln(grunt.util.kindOf([1, 2, 3]));    // array
+
+    // recurse over object properties
+    var o = {
+      name: 'Andrew',
+      obj: {
+        one: 1,
+        two: 2
+      },
+      arr: ['a', 'b', 'c']
+    };
+    grunt.util.recurse(o, function(value) {
+      grunt.log.ok(value);
+    });
+
+    // repeat
+    grunt.log.writeln(grunt.util.repeat(16, 'Na') + ' Batman!');
+
+    // pluralization
+    var numErrors = 4;
+    grunt.log.writeln(grunt.util.pluralize(numErrors, 'function/functions'));   // functions
+    numErrors = 1;
+    grunt.log.writeln(grunt.util.pluralize(numErrors, 'function/functions'));   // function
+
+    // create an error object from a message
+    throw grunt.util.error('something bad happened!');
   });
 
 
