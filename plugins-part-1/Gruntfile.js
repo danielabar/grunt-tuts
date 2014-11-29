@@ -2,28 +2,31 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    concat: {
-      options: {
-        separator: ';',     // char to use between files that are being put together
-        banner: '/* danib 2014 */\n'
-      },
-      target: {
-        // example of array config rather than wildcarding
-        src: ['src/application.js', 'src/util.js'],
-        dest: 'dist/application.js'
-      }
-    },
+    pkg: grunt.file.readJSON('package.json'),
 
     uglify: {
       options: {
         mangle: true,
         compress: true,
         sourceMap: 'dist/application.map',
-        banner: '/* danib 2014 */\n'
+        banner: "/* <%= pkg.author %> | <%= pkg.license %> 2014 */\n"
       },
       target: {
         src: 'dist/application.js',
         dest: 'dist/application.min.js'
+      }
+    },
+
+    concat: {
+      options: {
+        separator: ';',     // char to use between files that are being put together
+        // banner: '/* <%= pkg.author | 2014 %> */\n'
+        banner: '/* <%= pkg.name %> v<%= pkg.version %> | Authored by: <%= pkg.author %>, 2014 <%= pkg.license %> */\n'
+      },
+      target: {
+        // example of array config rather than wildcarding
+        src: ['src/application.js', 'src/util.js'],
+        dest: 'dist/application.js'
       }
     },
 
@@ -114,6 +117,14 @@ module.exports = function(grunt) {
       } else {
         console.log('the time is odd');
       }
+    }
+  );
+
+  grunt.registerTask(
+    'mydebug',
+    function() {
+      var json = grunt.file.readJSON('package.json');
+      console.log(json.author);
     }
   );
 

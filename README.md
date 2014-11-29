@@ -603,3 +603,6 @@ Output
   Aborted due to warnings.
   ```
 
+## Templating
+
+To avoid hard-coding configuration options.
