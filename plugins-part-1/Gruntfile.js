@@ -1,10 +1,19 @@
 module.exports = function(grunt) {
 
-  var bannerContent = '/* <%= pkg.name %> v<%= pkg.version %> | Authored by: <%= pkg.author %>, 2014 <%= pkg.license %> */\n';
+  var bannerContent = [
+    '/*',
+    '* <%= pkg.name %> v<%= pkg.version %> | Authored by: <%= pkg.author %>, 2014 <%= pkg.license %>',
+    '* Generated on <%= grunt.template.today("yyyy-mm-dd") %>',
+    '*** Experiment with grunt.template.date:  <%= grunt.template.date(new Date(100), "yyyy-mm-dd") %>',
+    '*** Experiment with grunt.template.process: <%= str %>',
+    '*/'
+  ].join('\n');
 
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
+
+    str: grunt.template.process('My name is <%= name %>', { data : { name: 'danib' } }),
 
     uglify: {
       options: {

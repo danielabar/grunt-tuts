@@ -22,6 +22,7 @@
     - [File](#file)
     - [Options](#options)
     - [Utility](#utility)
+  - [Templating](#templating)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -606,3 +607,43 @@ Output
 ## Templating
 
 To avoid hard-coding configuration options.
+Wherever there are options, can use templating to reference other variables.
+
+For example, to make a dynamic banner, using information from `package.json`
+
+  ```javascript
+  grunt.initConfig({
+
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      options: {
+        mangle: true,
+        compress: true,
+        sourceMap: true,
+        banner: '/* <%= pkg.name %> v<%= pkg.version %> | Written by <%= pkg.author %>, 2014 <%= pkg.license %> */\n'
+      },
+      target: {
+        src: 'dist/application.js',
+        dest: 'dist/application.min.js'
+      }
+    }
+    ...
+  ```
+
+Can also use grunt's template api's, for example, to generate today's date
+
+  ```javascript
+  <%= grunt.template.today("yyyy-mm-dd") %>   // a date like 2014-11-29
+  ```
+
+Process template to pass any data
+
+  ```javascript
+  grunt.initConfig({
+    str: grunt.template.process('My name is <%= name %>', { data : { name: 'danib' } }),
+    uglify: {
+      banner: '<%= str %>'    // My name is danib
+    }
+    ...
+  ```
+
