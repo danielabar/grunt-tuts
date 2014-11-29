@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  var bannerContent = '/* <%= pkg.name %> v<%= pkg.version %> | Authored by: <%= pkg.author %>, 2014 <%= pkg.license %> */\n';
+
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
@@ -8,8 +10,8 @@ module.exports = function(grunt) {
       options: {
         mangle: true,
         compress: true,
-        sourceMap: 'dist/application.map',
-        banner: "/* <%= pkg.author %> | <%= pkg.license %> 2014 */\n"
+        sourceMap: true,
+        banner: bannerContent
       },
       target: {
         src: 'dist/application.js',
@@ -20,8 +22,7 @@ module.exports = function(grunt) {
     concat: {
       options: {
         separator: ';',     // char to use between files that are being put together
-        // banner: '/* <%= pkg.author | 2014 %> */\n'
-        banner: '/* <%= pkg.name %> v<%= pkg.version %> | Authored by: <%= pkg.author %>, 2014 <%= pkg.license %> */\n'
+        banner: bannerContent
       },
       target: {
         // example of array config rather than wildcarding
