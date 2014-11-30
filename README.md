@@ -23,6 +23,7 @@
     - [Options](#options)
     - [Utility](#utility)
   - [Templating](#templating)
+  - [Building Your Own Template (Scaffolding)](#building-your-own-template-scaffolding)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -646,4 +647,27 @@ Process template to pass any data
     }
     ...
   ```
+
+## Building Your Own Template (Scaffolding)
+
+For example, suppose you always build webapps with a Backbone front end, and Express.js back end.
+
+All the grunt-init templates are in
+
+  ```bash
+  cd ~/.grunt-init
+  ```
+
+To develop a custom template, make a symbolic link. For example
+
+  ```bash
+  mkdir ~/projects/bb-express
+  ln -s ~/projects/bb-express ~/.grunt-init/bb-express
+  touch ~/projects/bb-express/template.js
+  mkdir ~/projects/bb-express/root
+  ```
+
+Copy any starter files (Gruntfile.js, app.js etc.) into `bb-express/root`.
+Any files in this directory will be copied to the new project when grunt-init is run with this template.
+
 
