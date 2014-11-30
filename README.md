@@ -658,7 +658,7 @@ All the grunt-init templates are in
   cd ~/.grunt-init
   ```
 
-To develop a custom template, make a symbolic link. For example
+To develop a custom template, link your working dir to grunt-init dir
 
   ```bash
   mkdir ~/projects/bb-express
@@ -670,4 +670,10 @@ To develop a custom template, make a symbolic link. For example
 Copy any starter files (Gruntfile.js, app.js etc.) into `bb-express/root`.
 Any files in this directory will be copied to the new project when grunt-init is run with this template.
 
+Use custom template
 
+  ```bash
+  cd ~/projects
+  mkdir mytest && cd $_
+  grunt-init bb-express
+  ```
