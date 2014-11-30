@@ -11,7 +11,7 @@ exports.template = function(grunt, init, done) {
     init.prompt('name'),
     init.prompt('description'),
     init.prompt('version'),
-    init.prompt('license', 'MIT'),
+    init.prompt('licenses', 'MIT'),
 
     // special values -> users of templates can create a defaults file for these
     init.prompt('author_name'),
@@ -21,8 +21,8 @@ exports.template = function(grunt, init, done) {
       // setup to scaffold user's new project, files will be all files in the root folder
       var files = init.filesToCopy(props);
 
-      // grunt knows how to copy license file, WATCH OUT: this function expects an array!
-      init.addLicenseFiles(files, [props.license]);
+      // grunt knows how to copy license file
+      init.addLicenseFiles(files, props.licenses);
 
       // copy the files from root folder to user's newly scaffolded project dir, props is a context object
       // any file in the root folder can have templating directives, to which prop values can be applied

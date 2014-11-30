@@ -650,15 +650,12 @@ Process template to pass any data
 
 ## Building Your Own Template (Scaffolding)
 
-For example, suppose you always build webapps with a Backbone front end, and Express.js back end.
+[Example](bb-express/template.js)
 
-All the grunt-init templates are in
+All the grunt-init templates are in `~/.grunt-init`
 
-  ```bash
-  cd ~/.grunt-init
-  ```
-
-To develop a custom template, link your working dir to grunt-init dir
+To develop a custom template, link your project dir to grunt-init dir.
+For example, to develop a template for Backbone and Express apps, might call it `bb-express`
 
   ```bash
   mkdir ~/projects/bb-express
@@ -667,7 +664,7 @@ To develop a custom template, link your working dir to grunt-init dir
   mkdir ~/projects/bb-express/root
   ```
 
-Copy any starter files (Gruntfile.js, app.js etc.) into `bb-express/root`.
+Place any starter files (Gruntfile.js, app.js etc.) into `bb-express/root`.
 Any files in this directory will be copied to the new project when grunt-init is run with this template.
 
 Use custom template
