@@ -24,6 +24,7 @@
     - [Utility](#utility)
   - [Templating](#templating)
   - [Building Your Own Template (Scaffolding)](#building-your-own-template-scaffolding)
+  - [Building a Grunt Plugin](#building-a-grunt-plugin)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -674,3 +675,22 @@ Use custom template
   mkdir mytest && cd $_
   grunt-init bb-express
   ```
+
+Use default values
+
+  ```bash
+  cd ~/.grunt-init
+  touch defaults.json
+  ```
+
+Edit `default.json`, for example
+
+  ```javascript
+  {
+    "author_name" : "John Doe",
+    "author_url" : "http://johndoe.ca",
+    "author_email" : "john.doe@test.com"
+  }
+  ```
+
+## Building a Grunt Plugin

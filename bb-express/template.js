@@ -45,7 +45,7 @@ exports.template = function(grunt, init, done) {
           "jade": "latest"
         },
         devDependencies: {
-            "grunt": "latest",
+          "grunt": "latest",
           "grunt-contrib-clean": "^0.6.0",
           "grunt-contrib-coffee": "^0.12.0",
           "grunt-contrib-concat": "^0.5.0",
