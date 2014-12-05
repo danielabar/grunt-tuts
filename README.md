@@ -694,3 +694,23 @@ Edit `default.json`, for example
   ```
 
 ## Building a Grunt Plugin
+
+[Example](fnList/tasks/fnList.js)
+
+Don't have to build entirely from scatch. Instead, you can git clone the grunt-init-gruntplugin to get started.
+This is an initialization template, specifically for building grunt plugins.
+
+  ```bash
+  git clone git://github.com/gruntjs/grunt-init-gruntplugin.git ~/.grunt-init/gruntplugin
+  ```
+
+Now use this template to start a new plugin project
+
+  ```bash
+  mkdir ~/projects/fnList && cd $_
+  grunt-init gruntplugin
+  ```
+
+A grunt plugin is a grunt task, that is not directly inside the main project's Gruntfile.js
+
+The example `fnList` plugin will list all the functions that are inside a given JavaScript file.

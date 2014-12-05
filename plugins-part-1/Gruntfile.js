@@ -102,6 +102,13 @@ module.exports = function(grunt) {
           two: 2
         }
       }
+    },
+
+    // Configure our custom task
+    fnList: {
+      target: {
+        src: 'src/*.js'
+      }
     }
 
   });
@@ -113,6 +120,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-clean');
+
+  // Use a custom plugin that is in development - reference the tasks folder
+  grunt.loadTasks('/Users/dbaron/projects/grunt-tuts/fnList/tasks')
 
   grunt.registerTask('test', ['nodeunit']);
   grunt.registerTask('default', ['jshint', 'nodeunit', 'clean', 'coffee', 'concat', 'uglify']);
